@@ -116,3 +116,6 @@ This repository uses resting-state fMRI data from the [ADNI](https://adni.loni.u
 
 ---
 
+## Contributors
+
+- README generated with [Claude](https://claude.ai) (Anthropic)
