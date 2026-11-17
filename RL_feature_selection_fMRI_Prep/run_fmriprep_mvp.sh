@@ -1,32 +1,28 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ============ 你需要改的地方 ============
-
-# 1) BIDS 根目录（必须是绝对路径）
+# 1) BIDS 根目录（绝对路径）
 BIDS_DIR="/Users/daxiaoniqiu/anaconda3/AI4H/pythonProject/myvenv/thesis/thesis/AD_MVP/BIDS"
 
 # 2) 输出目录（绝对路径）
 OUT_DIR="/Users/daxiaoniqiu/anaconda3/AI4H/pythonProject/myvenv/thesis/thesis/AD_MVP/mvp_fmriprep_out"
 
-# 3) 工作目录（绝对路径，建议SSD）
+# 3) 工作目录（绝对路径，SSD）
 WORK_DIR="/Users/daxiaoniqiu/anaconda3/AI4H/pythonProject/myvenv/thesis/thesis/AD_MVP/mvp_fmriprep_work"
 
-# 4) FreeSurfer license（很多镜像即使你不用 recon-all 也要求提供）
-# 如果你没有 license.txt：先去 FreeSurfer 官网申请，然后放到本地某个路径
+# 4) FreeSurfer license
 FS_LICENSE="/Users/daxiaoniqiu/anaconda3/AI4H/pythonProject/myvenv/thesis/thesis/license.txt"
 
 # 5) 先跑少量 subjects 做 QC（把 sub- 后面的 ID 写进来）
-# 例：sub-001 就写 001
 SUBJECTS=($(ls ${BIDS_DIR} | grep '^sub-' | sed 's/sub-//'))
 BATCH_SIZE=5
 
-# 6) 线程/内存（按你机器调整）
+# 6) 线程/内存
 NTHREADS="6"
 OMP_NTHREADS="4"
 MEM_MB="12000"
 
-# 7) fMRIPrep 镜像版本（建议固定版本，保证可复现 reproducible=可复现）
+# 7) fMRIPrep 镜像版本
 FMRIPREP_IMG="nipreps/fmriprep:24.1.0"
 PLATFORM="--platform linux/amd64"
 
