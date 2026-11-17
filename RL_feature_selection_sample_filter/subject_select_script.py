@@ -2,13 +2,13 @@ from pathlib import Path
 import pandas as pd
 import duckdb
 
-# ========= 1) 配置输入输出路径（按你图里的目录结构改） =========
+# ========= 1) 配置输入输出路径 =========
 BASE_DIR = Path(__file__).resolve().parent  # 脚本所在目录
 
 XLSX_PATH_CLINICAL = BASE_DIR / "All_Subjects_My_Table_27Jan2026.xlsx"
 XLSX_PATH = BASE_DIR / "T1 cohort manifest.xlsx"
 
-# 输出文件（你想要 csv 或 xlsx 都行）
+# 输出文件
 OUT_CSV = BASE_DIR / "joined_output.csv"
 # OUT_XLSX = BASE_DIR / "joined_output.xlsx"
 
@@ -108,7 +108,6 @@ def export_outputs(df: pd.DataFrame, out_csv: Path):
 def main():
     df_all, df_t1,df_t2 = load_inputs(XLSX_PATH_CLINICAL, XLSX_PATH)
 
-    # 你可以先打印列名，方便改 SQL 的 join key
     print("XLSX_CLINICAL columns:", list(df_all.columns))
     print("XLSX_T1w_SCAN columns:", list(df_t1.columns))
     print("XLSX_rs_fmri_SCAN columns:", list(df_t2.columns))
